@@ -1,0 +1,35 @@
+import unittest
+class TestPriceFormatter(unittest.TestCase):
+    
+    def test_simple_range():
+        #Arrange
+        numbers = [i for i in range(20, 30)]
+        #Act
+        result = result(str)
+        #Assert
+        assert result == list(numbers)
+
+    def test_negative_value():
+        #Arrange
+        numbers = [i for i in range(-20, -300000)]
+        #Act
+        result = result(str)
+        #Assert
+        assert result == list(numbers)
+
+
+    def test_zero_value():
+        #Arrange
+        numbers = [i for i in range (0, 0)]
+        #Act
+        result = result(str)
+        #Assert
+        assert result == list(numbers)
+
+    def test_no_values():
+        #Arrange
+        numbers = [i for i in range (None)]
+        #Act
+        result = result(str)
+        #Assert
+        assert result == list(numbers)

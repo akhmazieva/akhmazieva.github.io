@@ -1,0 +1,38 @@
+def format_price_range(price_from: int | None, price_to: int | None) -> str:
+    def format_number(number: int) -> str:
+        if number is None:
+            return ""
+        
+        if number < 1000:
+            unit = "P"
+        elif number < 1_000_000:
+            number /= 1000
+            unit = "тыс. p"
+        elif number < 1_000_000_000:
+            number /= 1_000_000
+            unit = "млн. p"
+        else:
+            number /= 1_000_000_000
+            unit = "млрд. p"
+
+        if isinstance(number, int) or (isinstance(number, float)):
+            formatted_number = f"{int(number)}"
+        else:
+            formatted_number = f"{number:.1f}".rstrip('0').rstrip('.')
+        return f"{formatted_number} {unit}"
+    
+    if price_from is not None and price_to is not None:
+        return f"{format_number (price_from)} - {format_number(price_to)}"
+    elif price_from is not None:
+        return f"от {format_number (price_from)}"
+    elif price_to is not None:
+        return f"до {format_number (price_to)}"
+    else:
+        return""
+
+print(format_price_range(20, 30))
+print(format_price_range(20, 300000))
+print(format_price_range(2001, 300000))
+print(format_price_range(2001, None))
+print(format_price_range(None, 100500))
+print(format_price_range(None, 10050000))
